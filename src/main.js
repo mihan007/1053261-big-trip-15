@@ -1,8 +1,8 @@
-import { createPointFormTemplate } from './view/point-form';
 import Menu from './view/menu';
+import { createPointFormTemplate } from './view/point-form';
 import { createPointListTemplate } from './view/point-list';
 import { createCostTemplate } from './view/cost';
-import { createFilterTemplate } from './view/filter';
+import Filter from './view/filter';
 import { createInfoTemplate } from './view/info';
 import { createSortTemplate } from './view/sort';
 import { generatePoint } from './mock/point';
@@ -27,7 +27,7 @@ const costElement = document.querySelector('.js-cost');
 renderTemplate(costElement, createCostTemplate(points));
 
 const filterElement = document.querySelector('.js-filter');
-renderTemplate(filterElement, createFilterTemplate());
+renderElement(filterElement, new Filter().getElement());
 
 const sortElement = document.querySelector('.js-sort');
 renderTemplate(sortElement, createSortTemplate());
