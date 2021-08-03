@@ -4,7 +4,7 @@ import { createPointListTemplate } from './view/point-list';
 import { createCostTemplate } from './view/cost';
 import Filter from './view/filter';
 import { createInfoTemplate } from './view/info';
-import { createSortTemplate } from './view/sort';
+import Sort from './view/sort';
 import { generatePoint } from './mock/point';
 import { range, renderTemplate, renderElement } from './utils';
 
@@ -30,4 +30,4 @@ const filterElement = document.querySelector('.js-filter');
 renderElement(filterElement, new Filter().getElement());
 
 const sortElement = document.querySelector('.js-sort');
-renderTemplate(sortElement, createSortTemplate());
+renderElement(sortElement, new Sort().getElement());
