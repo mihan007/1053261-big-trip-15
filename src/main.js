@@ -1,5 +1,5 @@
 import { createPointFormTemplate } from './view/point-form';
-import Menu, { createMenuTemplate } from './view/menu';
+import Menu from './view/menu';
 import { createPointListTemplate } from './view/point-list';
 import { createCostTemplate } from './view/cost';
 import { createFilterTemplate } from './view/filter';
