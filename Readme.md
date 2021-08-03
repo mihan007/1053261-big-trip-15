@@ -1,7 +1,7 @@
 # Проект «Большое путешествие»
 
-* Студент: [Михаил Куклин](https://up.htmlacademy.ru/ecmascript/15/user/1053261).
-* Наставник: `Неизвестно`.
+* Студент: [Михаил Куклин](https://up.htmlacademy.ru/ecmascript/14/user/1053261).
+* Наставник: [Алексей Балесный](https://htmlacademy.ru/profile/id221665).
 
 ---
 

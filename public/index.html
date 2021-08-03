@@ -16,16 +16,20 @@
 
         <div class="trip-main">
           <!-- Маршрут и стоимость -->
+          <section class="trip-main__trip-info  trip-info js-trip js-cost">
+          </section>
 
           <div class="trip-main__trip-controls  trip-controls">
             <div class="trip-controls__navigation">
               <h2 class="visually-hidden">Switch trip view</h2>
               <!-- Меню -->
+              <div class="js-menu"></div>
             </div>
 
             <div class="trip-controls__filters">
               <h2 class="visually-hidden">Filter events</h2>
               <!-- Фильтры -->
+              <div class="js-filter"></div>
             </div>
           </div>
 
@@ -33,16 +37,20 @@
         </div>
       </div>
     </header>
-    <main class="page-body__page-main  page-main">
+    <main class="page-body__page-main page-main js-main">
       <div class="page-body__container">
           <section class="trip-events">
             <h2 class="visually-hidden">Trip events</h2>
 
             <!-- Сортировка -->
+            <div class="js-sort"></div>
 
             <!-- Контент -->
+            <ul class="trip-events__list js-content">
+            </ul>
           </section>
       </div>
     </main>
+    <script src="./bundle.js"></script>
   </body>
 </html>
