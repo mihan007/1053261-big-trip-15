@@ -1,6 +1,6 @@
 import Menu from './view/menu';
 import PointForm from './view/point-form';
-import { createPointListTemplate } from './view/point-list';
+import PointList from './view/point-list';
 import { createCostTemplate } from './view/cost';
 import Filter from './view/filter';
 import { createInfoTemplate } from './view/info';
@@ -18,7 +18,7 @@ const contentElement = document.querySelector('.js-content');
 renderElement(contentElement, new PointForm(points[0]).getElement());
 renderElement(contentElement, new PointForm().getElement());
 
-points.map((el, index) => renderTemplate(contentElement, createPointListTemplate(points[index])));
+points.map((el, index) => renderElement(contentElement, new PointList(points[index]).getElement()));
 
 const tripElement = document.querySelector('.js-trip');
 renderTemplate(tripElement, createInfoTemplate(points));
