@@ -3,7 +3,7 @@ import PointForm from './view/point-form';
 import PointList from './view/point-list';
 import Cost from './view/cost';
 import Filter from './view/filter';
-import { createInfoTemplate } from './view/info';
+import Info from './view/info';
 import Sort from './view/sort';
 import { generatePoint } from './mock/point';
 import { range, renderTemplate, renderElement } from './utils';
@@ -21,7 +21,7 @@ renderElement(contentElement, new PointForm().getElement());
 points.map((el, index) => renderElement(contentElement, new PointList(points[index]).getElement()));
 
 const tripElement = document.querySelector('.js-trip');
-renderTemplate(tripElement, createInfoTemplate(points));
+renderElement(tripElement, new Info(points).getElement());
 
 const costElement = document.querySelector('.js-cost');
 renderElement(costElement, new Cost(points).getElement());
