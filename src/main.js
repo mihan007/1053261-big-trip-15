@@ -1,7 +1,7 @@
 import Menu from './view/menu';
 import PointForm from './view/point-form';
 import PointList from './view/point-list';
-import { createCostTemplate } from './view/cost';
+import Cost from './view/cost';
 import Filter from './view/filter';
 import { createInfoTemplate } from './view/info';
 import Sort from './view/sort';
@@ -24,7 +24,7 @@ const tripElement = document.querySelector('.js-trip');
 renderTemplate(tripElement, createInfoTemplate(points));
 
 const costElement = document.querySelector('.js-cost');
-renderTemplate(costElement, createCostTemplate(points));
+renderElement(costElement, new Cost(points).getElement());
 
 const filterElement = document.querySelector('.js-filter');
 renderElement(filterElement, new Filter().getElement());

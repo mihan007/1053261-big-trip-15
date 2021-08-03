@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import durationPlugin from 'dayjs/plugin/duration';
 import { DateTimeFormat } from '../constants/date-time-format';
 import { createOffersTemplate } from './offers';
-import { createElement } from '../utils'
+import { createElement } from '../utils';
 
 dayjs.extend(durationPlugin);
 
@@ -60,15 +60,15 @@ const createPointListTemplate = (point) => {
 };
 
 export default class PointList {
-  constructor(point ) {
+  constructor (point) {
     this.point = point;
   }
 
-  getTemplate() {
+  getTemplate () {
     return createPointListTemplate(this.point);
   }
 
-  getElement() {
+  getElement () {
     if (!this._element) {
       this._element = createElement(this.getTemplate());
     }
@@ -76,7 +76,7 @@ export default class PointList {
     return this._element;
   }
 
-  removeElement() {
+  removeElement () {
     this._element = null;
   }
 }
