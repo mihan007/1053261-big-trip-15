@@ -5,7 +5,7 @@ import { getPointTypeIconUrl } from '../constants/point-type-icons';
 import { PointTypeNames } from '../constants/point-type-names';
 import { Destinations } from '../constants/destinations';
 import { PointTypeOffers } from '../constants/point-type-offers';
-import { getRandomInteger } from '../utils';
+import { createElement, getRandomInteger } from '../utils'
 
 const createPointTypeEditTemplate = (currentType) => {
   return Object.entries(PointType).map((pointType) => {
@@ -67,7 +67,7 @@ const createEventDestinationInfoTemplate = (destination) => {
     : '';
 };
 
-export const createPointFormTemplate = (point = {}) => {
+const createPointFormTemplate = (point = {}) => {
   const {
     type = PointType.TAXI,
     typeName,
@@ -160,3 +160,25 @@ export const createPointFormTemplate = (point = {}) => {
           </li>
   `;
 };
+
+export default class PointForm {
+  constructor(point = {}) {
+    this.point = point;
+  }
+
+  getTemplate() {
+    return createPointFormTemplate(this.point);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}

@@ -1,5 +1,5 @@
 import Menu from './view/menu';
-import { createPointFormTemplate } from './view/point-form';
+import PointForm from './view/point-form';
 import { createPointListTemplate } from './view/point-list';
 import { createCostTemplate } from './view/cost';
 import Filter from './view/filter';
@@ -15,8 +15,8 @@ const menuElement = document.querySelector('.js-menu');
 renderElement(menuElement, new Menu().getElement());
 
 const contentElement = document.querySelector('.js-content');
-renderTemplate(contentElement, createPointFormTemplate(points[0]));
-renderTemplate(contentElement, createPointFormTemplate());
+renderElement(contentElement, new PointForm(points[0]).getElement());
+renderElement(contentElement, new PointForm().getElement());
 
 points.map((el, index) => renderTemplate(contentElement, createPointListTemplate(points[index])));
 
