@@ -14,10 +14,6 @@ const points = range(1, POINT_COUNT).map(() => generatePoint());
 const menuElement = document.querySelector('.js-menu');
 render(menuElement, new Menu().getElement());
 
-const contentElement = document.querySelector('.js-content');
-render(contentElement, new PointForm(points[0]).getElement());
-render(contentElement, new PointForm().getElement());
-
 points.map((el, index) => render(contentElement, new PointList(points[index]).getElement()));
 
 const tripElement = document.querySelector('.js-trip');
