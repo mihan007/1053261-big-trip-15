@@ -148,7 +148,7 @@ const createPointFormTemplate = (point = {}) => {
 
                   <button class="event__save-btn btn btn--blue" type="submit">Save</button>
                   <button class="event__reset-btn" type="reset">${destination ? 'Delete' : 'Cancel'}</button>
-                  <button class="event__rollup-btn" type="button">
+                  <button class="event__rollup-btn js-close-edit-form" type="button">
                     <span class="visually-hidden">Open event</span>
                   </button>
                 </header>
@@ -176,7 +176,7 @@ export default class PointForm {
     }
 
     if (selector) {
-      return this._element.querySelector(selector)
+      return this._element.querySelector(selector);
     }
 
     return this._element;

@@ -43,6 +43,6 @@ export const getRandomArrayElement = (array) => {
   return array[randomIndex];
 };
 
-export const range = (start, stop, step = 1) => stop - start > 0
-  ? Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + (i * step))
+export const range = (start, stop, step = 1) => stop - start > -1
+  ? Array.from({ length: (stop - start) / step }, (_, i) => start + (i * step))
   : [];
