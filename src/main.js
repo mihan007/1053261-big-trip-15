@@ -39,7 +39,7 @@ const renderPoint = (pointListElement, point) => {
 };
 
 const contentElement = document.querySelector('.js-content');
-points.map((point, index) => renderPoint(contentElement, point));
+points.map((point) => renderPoint(contentElement, point));
 
 const tripElement = document.querySelector('.js-trip');
 render(tripElement, new Info(points).getElement());

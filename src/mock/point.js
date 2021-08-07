@@ -23,14 +23,14 @@ const uniqueByField = (array, field) => {
   const result = [];
   const map = new Map();
   for (const item of array) {
-    if(!map.has(item[field])){
+    if (!map.has(item[field])) {
       map.set(item.id, true);    // set any value to Map
       result.push(item);
     }
   }
 
-  return result
-}
+  return result;
+};
 
 const generateOffers = (pointType) => {
   if (!PointTypeOffers[pointType]) {
@@ -44,7 +44,7 @@ const generateOffers = (pointType) => {
   range(0, offersCount).map(() => offers.add(generateOffer(pointType)));
 
   // Remove offers with same point type
-  return uniqueByField(Array.from(offers), 'pointType')
+  return uniqueByField(Array.from(offers), 'pointType');
 };
 
 const generateDateRange = (startDate, type) => {
