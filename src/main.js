@@ -9,7 +9,7 @@ import { generatePoint } from './mock/point';
 import { range, render } from './utils';
 
 const POINT_COUNT = 20;
-const points = range(0, POINT_COUNT).map(() => generatePoint());
+const points = range(0, POINT_COUNT).map(generatePoint);
 
 const menuElement = document.querySelector('.js-menu');
 render(menuElement, new Menu().getElement());
