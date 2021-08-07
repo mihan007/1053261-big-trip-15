@@ -1,7 +1,8 @@
 import dayjs from 'dayjs';
 import { DateTimeFormat } from '../constants/date-time-format';
+import { createElement } from '../utils';
 
-export const createInfoTemplate = (points) => {
+const createInfoTemplate = (points) => {
   const path = [];
   let lastAddedTitle = '';
   points.map((point) => {
@@ -38,3 +39,24 @@ export const createInfoTemplate = (points) => {
         </div>` : '';
 };
 
+export default class Info {
+  constructor (points) {
+    this.points = points;
+  }
+
+  getTemplate () {
+    return createInfoTemplate(this.points);
+  }
+
+  getElement () {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement () {
+    this._element = null;
+  }
+}

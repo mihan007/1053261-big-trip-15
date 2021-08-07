@@ -2,10 +2,11 @@ import dayjs from 'dayjs';
 import durationPlugin from 'dayjs/plugin/duration';
 import { DateTimeFormat } from '../constants/date-time-format';
 import { createOffersTemplate } from './offers';
+import { createElement } from '../utils';
 
 dayjs.extend(durationPlugin);
 
-export const createPointListTemplate = (point) => {
+const createPointListTemplate = (point) => {
   const { typeName, typeIconUrl, offers, destination, startDate, endDate, isFavorite, price } = point;
   const startDateFormTemplate = dayjs(startDate).format(DateTimeFormat.htmlDateTimeAttribute);
   const startDateTimeTemplate = dayjs(startDate).format(DateTimeFormat.pointListTime);
@@ -50,10 +51,32 @@ export const createPointListTemplate = (point) => {
                     <path d="M14 21l-8.22899 4.3262 1.57159-9.1631L.685209 9.67376 9.8855 8.33688 14 0l4.1145 8.33688 9.2003 1.33688-6.6574 6.48934 1.5716 9.1631L14 21z"></path>
                   </svg>
                 </button>
-                <button class="event__rollup-btn" type="button">
+                <button class="event__rollup-btn js-open-edit-form" type="button">
                   <span class="visually-hidden">Open event</span>
                 </button>
               </div>
             </li>
   `;
 };
+
+export default class PointList {
+  constructor (point) {
+    this.point = point;
+  }
+
+  getTemplate () {
+    return createPointListTemplate(this.point);
+  }
+
+  getElement () {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement () {
+    this._element = null;
+  }
+}

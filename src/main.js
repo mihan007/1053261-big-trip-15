@@ -1,33 +1,54 @@
-import { createPointFormTemplate } from './view/point-form';
 import Menu from './view/menu';
-import { createPointListTemplate } from './view/point-list';
-import { createCostTemplate } from './view/cost';
-import { createFilterTemplate } from './view/filter';
-import { createInfoTemplate } from './view/info';
-import { createSortTemplate } from './view/sort';
+import PointForm from './view/point-form';
+import Point from './view/point-list';
+import Cost from './view/cost';
+import Filter from './view/filter';
+import Info from './view/info';
+import Sort from './view/sort';
 import { generatePoint } from './mock/point';
-import { range, renderTemplate, renderElement } from './utils';
+import { range, render } from './utils';
 
 const POINT_COUNT = 20;
-const points = range(1, POINT_COUNT).map(() => generatePoint());
+const points = range(0, POINT_COUNT).map(() => generatePoint());
 
 const menuElement = document.querySelector('.js-menu');
-renderElement(menuElement, new Menu().getElement());
+render(menuElement, new Menu().getElement());
+
+const renderPoint = (pointListElement, point) => {
+  const pointComponent = new Point(point);
+  const pointFormComponent = new PointForm(point);
+
+  const replaceCardToForm = () => {
+    pointListElement.replaceChild(pointFormComponent.getElement(), pointComponent.getElement());
+  };
+
+  const replaceFormToCard = () => {
+    pointListElement.replaceChild(pointComponent.getElement(), pointFormComponent.getElement());
+  };
+
+  pointComponent.getElement().querySelector('.js-open-edit-form').addEventListener('click', () => {
+    replaceCardToForm();
+  });
+
+  pointFormComponent.getElement().querySelector('form').addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    replaceFormToCard();
+  });
+
+  render(pointListElement, pointComponent.getElement());
+};
 
 const contentElement = document.querySelector('.js-content');
-renderTemplate(contentElement, createPointFormTemplate(points[0]));
-renderTemplate(contentElement, createPointFormTemplate());
-
-points.map((el, index) => renderTemplate(contentElement, createPointListTemplate(points[index])));
+points.map((point) => renderPoint(contentElement, point));
 
 const tripElement = document.querySelector('.js-trip');
-renderTemplate(tripElement, createInfoTemplate(points));
+render(tripElement, new Info(points).getElement());
 
 const costElement = document.querySelector('.js-cost');
-renderTemplate(costElement, createCostTemplate(points));
+render(costElement, new Cost(points).getElement());
 
 const filterElement = document.querySelector('.js-filter');
-renderTemplate(filterElement, createFilterTemplate());
+render(filterElement, new Filter().getElement());
 
 const sortElement = document.querySelector('.js-sort');
-renderTemplate(sortElement, createSortTemplate());
+render(sortElement, new Sort().getElement());
