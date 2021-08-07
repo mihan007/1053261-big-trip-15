@@ -170,9 +170,13 @@ export default class PointForm {
     return createPointFormTemplate(this.point);
   }
 
-  getElement () {
+  getElement (selector = null) {
     if (!this._element) {
       this._element = createElement(this.getTemplate());
+    }
+
+    if (selector) {
+      return this._element.querySelector(selector)
     }
 
     return this._element;

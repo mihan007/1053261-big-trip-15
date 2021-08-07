@@ -26,11 +26,11 @@ const renderPoint = (pointListElement, point) => {
     pointListElement.replaceChild(pointComponent.getElement(), pointFormComponent.getElement());
   };
 
-  pointComponent.getElement().querySelector('.js-open-edit-form').addEventListener('click', () => {
+  pointComponent.getElement('.js-open-edit-form').addEventListener('click', () => {
     replaceCardToForm();
   });
 
-  pointFormComponent.getElement().querySelector('form').addEventListener('submit', (evt) => {
+  pointFormComponent.getElement('form').addEventListener('submit', (evt) => {
     evt.preventDefault();
     replaceFormToCard();
   });
@@ -39,7 +39,7 @@ const renderPoint = (pointListElement, point) => {
 };
 
 const contentElement = document.querySelector('.js-content');
-points.map((point) => renderPoint(contentElement, point));
+points.forEach((point) => renderPoint(contentElement, point));
 
 const tripElement = document.querySelector('.js-trip');
 render(tripElement, new Info(points).getElement());
