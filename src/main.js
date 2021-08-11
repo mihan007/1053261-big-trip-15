@@ -38,12 +38,11 @@ const renderPoint = (pointListElement, point) => {
     document.addEventListener('keydown', onEscKeyDown);
   });
 
-  pointFormComponent.getElement('form').addEventListener('submit', (evt) => {
-    evt.preventDefault();
+  pointFormComponent.setSubmitHandler(() => {
     handleFormToCardAction(replaceFormToCard, onEscKeyDown);
   });
 
-  pointFormComponent.getElement('.js-close-edit-form').addEventListener('click', () => {
+  pointFormComponent.setClickHandler(() => {
     handleFormToCardAction(replaceFormToCard, onEscKeyDown);
   });
 

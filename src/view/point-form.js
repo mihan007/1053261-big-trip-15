@@ -166,9 +166,31 @@ export default class PointForm extends AbstractView {
   constructor (point = {}) {
     super();
     this.point = point;
+    this._submitHandler = this._submitHandler.bind(this);
+    this._clickHandler = this._clickHandler.bind(this);
   }
 
   getTemplate () {
     return createPointFormTemplate(this.point);
+  }
+
+  _submitHandler (evt) {
+    evt.preventDefault();
+    this._submitHandler.submit();
+  }
+
+  _clickHandler (evt) {
+    evt.preventDefault();
+    this._clickHandler.click();
+  }
+
+  setSubmitHandler (callback) {
+    this._submitHandler.submit = callback;
+    this.getElement('form').addEventListener('submit', this._submitHandler);
+  }
+
+  setClickHandler (callback) {
+    this._clickHandler.click = callback;
+    this.getElement('.js-close-edit-form').addEventListener('click', this._clickHandler);
   }
 }
