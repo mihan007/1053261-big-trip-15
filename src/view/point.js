@@ -1,8 +1,8 @@
 import dayjs from 'dayjs';
 import durationPlugin from 'dayjs/plugin/duration';
 import { DateTimeFormat } from '../constants/date-time-format';
-import { createOffersTemplate } from './offers';
-import { createElement } from '../utils';
+import Offers from './offers';
+import AbstractView from './abstract.js';
 
 dayjs.extend(durationPlugin);
 
@@ -23,7 +23,7 @@ const createPointListTemplate = (point) => {
     durationTemplate = duration.format(DateTimeFormat.durationMedium);
   }
 
-  const offersListTemplate = createOffersTemplate(offers);
+  const offersListTemplate = new Offers(offers);
   const favoriteClassName = isFavorite ? 'event__favorite-btn--active' : '';
 
   return `<li class="trip-events__item">
@@ -44,7 +44,7 @@ const createPointListTemplate = (point) => {
                 <p class="event__price">
                   €&nbsp;<span class="event__price-value">${price}</span>
                 </p>
-                ${offersListTemplate}
+                ${offersListTemplate.getTemplate()}
                 <button class="event__favorite-btn ${favoriteClassName}" type="button">
                   <span class="visually-hidden">Add to favorite</span>
                   <svg class="event__favorite-icon" width="28" height="28" viewBox="0 0 28 28">
@@ -59,24 +59,13 @@ const createPointListTemplate = (point) => {
   `;
 };
 
-export default class Point {
+export default class Point extends AbstractView {
   constructor (point) {
+    super();
     this.point = point;
   }
 
   getTemplate () {
     return createPointListTemplate(this.point);
-  }
-
-  getElement () {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement () {
-    this._element = null;
   }
 }

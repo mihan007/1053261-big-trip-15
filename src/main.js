@@ -10,7 +10,7 @@ import EmptyList from './view/empty-list';
 import { generatePoint } from './mock/point';
 import { range, render, RenderPosition } from './utils';
 
-const POINT_COUNT = 1;
+const POINT_COUNT = 2;
 const points = range(0, POINT_COUNT).map(generatePoint);
 
 const menuElement = document.querySelector('.js-menu');
@@ -19,7 +19,7 @@ render(menuElement, new Menu().getElement());
 const handleFormToCardAction = (replaceFormToCard, onEscKeyDown) => {
   replaceFormToCard();
   document.removeEventListener('keydown', onEscKeyDown);
-}
+};
 
 const renderPoint = (pointListElement, point) => {
   const pointComponent = new Point(point);

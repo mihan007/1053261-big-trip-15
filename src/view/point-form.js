@@ -5,7 +5,8 @@ import { getPointTypeIconUrl } from '../constants/point-type-icons';
 import { PointTypeNames } from '../constants/point-type-names';
 import { Destinations } from '../constants/destinations';
 import { PointTypeOffers } from '../constants/point-type-offers';
-import { createElement, getRandomInteger } from '../utils';
+import AbstractView from './abstract.js';
+import { getRandomInteger } from '../utils';
 
 const createPointTypeEditTemplate = (currentType) => {
   return Object.entries(PointType).map((pointType) => {
@@ -161,28 +162,13 @@ const createPointFormTemplate = (point = {}) => {
   `;
 };
 
-export default class PointForm {
+export default class PointForm extends AbstractView {
   constructor (point = {}) {
+    super();
     this.point = point;
   }
 
   getTemplate () {
     return createPointFormTemplate(this.point);
-  }
-
-  getElement (selector = null) {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    if (selector) {
-      return this._element.querySelector(selector);
-    }
-
-    return this._element;
-  }
-
-  removeElement () {
-    this._element = null;
   }
 }
