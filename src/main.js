@@ -33,7 +33,7 @@ const renderPoint = (pointListElement, point) => {
     pointListElement.replaceChild(pointComponent.getElement(), pointFormComponent.getElement());
   };
 
-  pointComponent.getElement('.js-open-edit-form').addEventListener('click', () => {
+  pointComponent.setClickHandler(() => {
     replaceCardToForm();
     document.addEventListener('keydown', onEscKeyDown);
   });
