@@ -8,7 +8,7 @@ import Info from './view/info';
 import Sort from './view/sort';
 import EmptyList from './view/empty-list';
 import { generatePoint } from './mock/point';
-import { render, RenderPosition } from './utils/render';
+import { render, RenderPosition, replace } from './utils/render';
 import { range } from './utils/common';
 
 const POINT_COUNT = 2;
@@ -27,11 +27,11 @@ const renderPoint = (pointListElement, point) => {
   const pointFormComponent = new PointForm(point);
 
   const replaceCardToForm = () => {
-    pointListElement.replaceChild(pointFormComponent.getElement(), pointComponent.getElement());
+    replace(pointFormComponent, pointComponent);
   };
 
   const replaceFormToCard = () => {
-    pointListElement.replaceChild(pointComponent.getElement(), pointFormComponent.getElement());
+    replace(pointComponent, pointFormComponent);
   };
 
   pointComponent.setClickHandler(() => {
