@@ -1,6 +1,6 @@
-import { getRandomArrayElement, getRandomInteger } from '../utils';
 import { Destinations } from '../constants/destinations';
 import { MockSentences } from '../constants/mock-sentences';
+import { getRandomArrayElement, getRandomInteger } from '../utils/common';
 
 const generateTitle = () => getRandomArrayElement(Destinations);
 

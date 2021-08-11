@@ -8,7 +8,8 @@ import Info from './view/info';
 import Sort from './view/sort';
 import EmptyList from './view/empty-list';
 import { generatePoint } from './mock/point';
-import { range, render, RenderPosition } from './utils';
+import { render, RenderPosition } from './utils/render';
+import { range } from './utils/common';
 
 const POINT_COUNT = 2;
 const points = range(0, POINT_COUNT).map(generatePoint);

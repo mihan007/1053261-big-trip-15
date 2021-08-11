@@ -1,7 +1,6 @@
 import dayjs from 'dayjs';
 import dayjsRandom from 'dayjs-random';
 import { PointType } from '../constants/point-type';
-import { getRandomInteger, range } from '../utils.js';
 import { PointPriceRange } from '../constants/price-ranges';
 import { generateOffer } from './offer';
 import { getPointTypeIconUrl } from '../constants/point-type-icons';
@@ -9,6 +8,7 @@ import { generateDestination } from './destination';
 import { PointTypeNames } from '../constants/point-type-names';
 import { PointTypeOffers } from '../constants/point-type-offers';
 import { pointTypeDurations } from '../constants/point-type-durations';
+import { getRandomInteger, range } from '../utils/common';
 
 dayjs.extend(dayjsRandom);
 

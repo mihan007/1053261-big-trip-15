@@ -6,7 +6,7 @@ import { PointTypeNames } from '../constants/point-type-names';
 import { Destinations } from '../constants/destinations';
 import { PointTypeOffers } from '../constants/point-type-offers';
 import AbstractView from './abstract.js';
-import { getRandomInteger } from '../utils';
+import { getRandomInteger } from '../utils/common';
 
 const createPointTypeEditTemplate = (currentType) => {
   return Object.entries(PointType).map((pointType) => {

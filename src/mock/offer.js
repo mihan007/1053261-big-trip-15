@@ -1,5 +1,5 @@
-import { getRandomArrayElement } from '../utils.js';
 import { PointTypeOffers } from '../constants/point-type-offers';
+import { getRandomArrayElement } from '../utils/common';
 
 export const generateOffer = (pointType) => {
   const pointOffer = getRandomArrayElement(PointTypeOffers[pointType]);
