@@ -10,13 +10,13 @@ import EmptyList from './view/empty-list';
 import { generatePoint } from './mock/point';
 import { range, render, RenderPosition } from './utils';
 
-const POINT_COUNT = 0;
+const POINT_COUNT = 1;
 const points = range(0, POINT_COUNT).map(generatePoint);
 
 const menuElement = document.querySelector('.js-menu');
 render(menuElement, new Menu().getElement());
 
-function handleFormToCardAction (replaceFormToCard, onEscKeyDown) {
+const handleFormToCardAction = (replaceFormToCard, onEscKeyDown) => {
   replaceFormToCard();
   document.removeEventListener('keydown', onEscKeyDown);
 }
@@ -44,15 +44,13 @@ const renderPoint = (pointListElement, point) => {
   });
 
   pointFormComponent.getElement('.js-close-edit-form').addEventListener('click', () => {
-    replaceFormToCard();
     handleFormToCardAction(replaceFormToCard, onEscKeyDown);
   });
 
   const onEscKeyDown = (evt) => {
     if (evt.key === 'Escape' || evt.key === 'Esc') {
       evt.preventDefault();
-      replaceFormToCard();
-      document.removeEventListener('keydown', onEscKeyDown);
+      handleFormToCardAction(replaceFormToCard, onEscKeyDown);
     }
   };
 
