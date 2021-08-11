@@ -15,7 +15,7 @@ const POINT_COUNT = 2;
 const points = range(0, POINT_COUNT).map(generatePoint);
 
 const menuElement = document.querySelector('.js-menu');
-render(menuElement, new Menu().getElement());
+render(menuElement, new Menu());
 
 const handleFormToCardAction = (replaceFormToCard, onEscKeyDown) => {
   replaceFormToCard();
@@ -54,27 +54,27 @@ const renderPoint = (pointListElement, point) => {
     }
   };
 
-  render(pointListElement, pointComponent.getElement());
+  render(pointListElement, pointComponent);
 };
 
 if (points.length) {
   const costElement = document.querySelector('.js-cost');
-  const costComponentElement = new Cost(points).getElement();
+  const costComponentElement = new Cost(points);
   render(costElement, costComponentElement, RenderPosition.AFTERBEGIN);
-  render(costComponentElement, new Info(points).getElement(), RenderPosition.AFTERBEGIN);
+  render(costComponentElement, new Info(points), RenderPosition.AFTERBEGIN);
 }
 
 const filterElement = document.querySelector('.js-filter');
-render(filterElement, new Filter().getElement(), RenderPosition.AFTERBEGIN);
+render(filterElement, new Filter(), RenderPosition.AFTERBEGIN);
 
 const containerElement = document.querySelector('.js-trip-events-container');
 if (points.length) {
-  const pointListComponent = new PointList().getElement();
-  render(containerElement, new Sort().getElement());
+  const pointListComponent = new PointList();
+  render(containerElement, new Sort());
   render(containerElement, pointListComponent);
 
   points.forEach((point) => renderPoint(pointListComponent, point));
 } else {
-  render(containerElement, new EmptyList().getElement());
+  render(containerElement, new EmptyList());
 }
 
