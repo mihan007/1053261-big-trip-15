@@ -28,7 +28,6 @@ const createDestinationListTemplate = (currentDestination) => {
 };
 
 const createEventAvailableOffers = (type, currentOffers) => {
-
   return PointTypeOffers[type].map((offer, ind) => {
     const checked = Boolean(currentOffers.find((el) => el.title === offer.title));
 

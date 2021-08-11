@@ -1,45 +1,34 @@
 import dayjs from 'dayjs';
 import durationPlugin from 'dayjs/plugin/duration';
-import { DateTimeFormat } from '../constants/date-time-format';
 import Offers from './offers';
 import AbstractView from './abstract.js';
+import { formatDateForUi, formatDateTimeForHtmlAttribute, formatDateTimeForUi, formatDuration } from '../utils/point';
 
 dayjs.extend(durationPlugin);
 
 const createPointListTemplate = (point) => {
   const { typeName, typeIconUrl, offers, destination, startDate, endDate, isFavorite, price } = point;
-  const startDateFormTemplate = dayjs(startDate).format(DateTimeFormat.htmlDateTimeAttribute);
-  const startDateTimeTemplate = dayjs(startDate).format(DateTimeFormat.pointListTime);
-  const startDateLabelTemplate = dayjs(startDate).format(DateTimeFormat.pointListDate);
-
-  const endDateFormTemplate = dayjs(endDate).format(DateTimeFormat.htmlDateTimeAttribute);
-  const endDateTimeTemplate = dayjs(endDate).format(DateTimeFormat.pointListTime);
-
-  const duration = dayjs.duration(dayjs(endDate).diff(dayjs(startDate)));
-  let durationTemplate = duration.format(DateTimeFormat.durationShort);
-  if (duration.days() > 0) {
-    durationTemplate = duration.format(DateTimeFormat.durationLong);
-  } else if (duration.hours() > 0) {
-    durationTemplate = duration.format(DateTimeFormat.durationMedium);
-  }
-
   const offersListTemplate = new Offers(offers);
   const favoriteClassName = isFavorite ? 'event__favorite-btn--active' : '';
 
   return `<li class="trip-events__item">
               <div class="event">
-                <time class="event__date" datetime="2019-03-18">${startDateLabelTemplate}</time>
+                <time class="event__date" datetime="${formatDateTimeForHtmlAttribute(startDate)}">${formatDateForUi(startDate)}</time>
                 <div class="event__type">
                   <img class="event__type-icon" width="42" height="42" src="${typeIconUrl}" alt="${typeName} icon">
                 </div>
                 <h3 class="event__title">${typeName} ${destination.title}</h3>
                 <div class="event__schedule">
                   <p class="event__time">
-                    <time class="event__start-time" datetime="${startDateFormTemplate}">${startDateTimeTemplate}</time>
+                    <time class="event__start-time" datetime="${formatDateTimeForHtmlAttribute(startDate)}">
+                        ${formatDateTimeForUi(startDate)}
+                    </time>
                     —
-                    <time class="event__end-time" datetime="${endDateFormTemplate}">${endDateTimeTemplate}</time>
+                    <time class="event__end-time" datetime="${formatDateTimeForHtmlAttribute(endDate)}">
+                        ${formatDateTimeForUi(endDate)}
+                      </time>
                   </p>
-                  <p class="event__duration">${durationTemplate}</p>
+                  <p class="event__duration">${formatDuration(startDate, endDate)}</p>
                 </div>
                 <p class="event__price">
                   €&nbsp;<span class="event__price-value">${price}</span>
